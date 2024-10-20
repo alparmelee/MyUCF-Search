@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Welcome to CodeCruncher, your go-to source for coding solutions!">
+  <title>CodeCruncher - Home</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>CodeCruncher</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h2>Welcome to CodeCruncher</h2>
+      <p>Your go-to source for all things coding. Learn, code, and solve problems!</p>
+      <button id="cta-button">Get Started</button>
+    </div>
+  </section>
+
+  <section id="about" class="info-section">
+    <h2>About Us</h2>
+    <p>CodeCruncher provides tutorials, coding challenges, and solutions for all levels of programmers. Join us today
+      and start your coding journey!</p>
+  </section>
+
+  <section id="services" class="info-section">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Programming Tutorials</li>
+      <li>Coding Challenges</li>
+      <li>Project Assistance</li>
+      <li>Community Support</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="info-section">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 CodeCruncher. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
