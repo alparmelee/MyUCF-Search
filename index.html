@@ -1,79 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Welcome to CodeCruncher, your go-to source for coding solutions!">
-  <title>CodeCruncher - Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myUCF Menu Search</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto:wght@400;500&display=swap"
-    rel="stylesheet">
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
-  <!-- CSS Styles -->
-  <link rel="stylesheet" href="style.css">
+h1 {
+    color: #0054a6;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#menuList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#menuList li {
+    background: #f9f9f9;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#menuList li:hover {
+    background: #e9e9e9;
+}
+
+    </style>
 </head>
 <body>
-  <header>
     <div class="container">
-      <h1>CodeCruncher</h1>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+        <h1>myUCF Menu Search</h1>
+        <input type="text" id="searchInput" placeholder="Search for a page...">
+        <ul id="menuList"></ul>
     </div>
-  </header>
+    <script>
+        const menuItems = [
+            { name: "Academic Resources", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO.SS_CC_HOLDS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HOLDS_90.FX_HE90_SR_HOLD&IsFolder=false&IgnoreParamTempl=FolderPath,IsFolder" },
+            { name: "Learning Online", url: "https://cdl.ucf.edu/support/student/" },
+            { name: "GPA Estimator", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/EMPL/c/FX_GPA_CALCULATOR.FX_GPA_CALCULATOR.GBL?FolderPath=PORTAL_ROOT_OBJECT.CF_UCF_ITEMS.FX_GPA_CALCULATOR_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Student Self Service", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL?pt_fname=FX_STUDENT_SLFSRV_MENU_90&FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90&IsFolder=true" },
+            { name: "Personal Information", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL?pt_fname=FX_STUDENT_SLFSRV_MENU_90&FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90&IsFolder=true" },
+            { name: "Names", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO.SS_CC_NAMES.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SR_PERS_INFO_90.FX_HE90_SR_NAME&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Ethnicity", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO_2.SS_CC_ETHNICITY_US.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SR_PERS_INFO_90.FX_HE90_SR_ETHNICITY&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Addresses", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO.SS_CC_ADDRESSES.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SR_PERS_INFO_90.FX_HE90_SR_ADDRESS&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Email Addresses", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO.SS_CC_EMAIL_ADDR.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SR_PERS_INFO_90.FX_HE90_SR_EMAIL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Phone Numbers", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO.SS_CC_PERS_PHONE.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SR_PERS_INFO_90.FX_HE90_SR_PHONE&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Emergency Contacts", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO.SS_CC_EMERG_CNTCT.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SR_PERS_INFO_90.FX_HE90_SR_EMER&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "FERPA/Directory Restrictions", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO.SS_CC_FERPA_SETUP.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SR_PERS_INFO_90.FX_HE90_SR_FERPA&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "UCFID Info", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/FX_SS_CAMPUS_ID.FX_SS_CAMPUS_ID.GBL?area=sss&FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SR_PERS_INFO_90.FX_SSS_CAMPUS_ID&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Holds & To Dos", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL?pt_fname=FX_STUDENT_SLFSRV_MENU_90&FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90&IsFolder=true" },
+            { name: "Holds", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO.SS_CC_HOLDS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HOLDS_90.FX_HE90_SR_HOLD&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "To Dos", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CC_PORTFOLIO.SS_CC_TODOS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HOLDS_90.FX_HE90_SR_TODO&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Student Records", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL?pt_fname=FX_STUDENT_SLFSRV_MENU_90&FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90&IsFolder=true" },
+            { name: "Course Catalog & Schedule", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.CLASS_SEARCH.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_CATALOG.FX90_SR_CLASS_SEARCH&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Class Search/Browse Catalog", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.CLASS_SEARCH.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_CATALOG.FX90_SR_CLASS_SEARCH&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Bulletin Boards", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/FX_POLARIS_MENU.FX_6202_SR_ENRL_DS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_BULLETIN.FX90_SR_BULLETIN_BOARD&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Enrollment", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL?pt_fname=FX_STUDENT_SLFSRV_MENU_90&FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90&IsFolder=true" },
+            { name: "myKnightAudit", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/FX_UG_AA_CUSTOM.FX_AA_PORTAL_LINK.GBL?pslnkid=FX_AA_AUDIT_CRL&FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ACAD_HIST.FX_AA_AUDIT_CRL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "View My Grades", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSR_SSENRL_GRADE.GBL?Action=A&IsFolder=false&FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ACAD_HIST.FX90_SR_GRADEVIEW&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Apply for Grade Forgiveness", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_SR_INQUIRE.FX15941_FORGIVE.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ACAD_HIST.FX90_SR_APPLY_GRDF&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Grade Forgiveness Status", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_SR_INQUIRE.FX_SR_7366_GRDFORG.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ACAD_HIST.FX90_SR_GRDF_STATUS&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Apply for Graduation", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SS_GRAD_APPLY.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ACAD_HIST.FX90_SR_GRADUATION&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Enrollment Verification", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_SR_USE.CF_5771_ENR_VERIFY.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ACAD_HIST.FX90_SR_VERIFICATION&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Transfer Credit Report", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_SR_USE.FX_TSR_STU.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ACAD_HIST.FX90_SR_TRANSFER_CRDT&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Academic Information", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSS_MY_ACAD.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ACAD_HIST.FX90_SR_ACAD_INFO&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "View My Advisors", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSR_SSADVR.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ACAD_HIST.FX90_SR_ADVISORS&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "View My Class Schedule", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ENROLLMENT.FX90_SR_CLASS_SCHEDULE&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Add Classes", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSR_SSENRL_CART.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ENROLLMENT.FX90_SR_ENROLL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Drop/Withdraw Classes", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSR_SSENRL_DROP.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ENROLLMENT.FX90_SR_DROP&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Swap Classes", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSR_SSENRL_SWAP.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ENROLLMENT.FX90_SR_SWAP&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "View My Weekly Schedule", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSR_SSENRL_SCHD_W.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ENROLLMENT.FX90_SR_WEEKLY_SCHD&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "View Enrollment Appointment", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSR_SSENRL_APPT.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SR.FX_HE90_SR_ENROLLMENT.FX90_SR_VIEW_APPT&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Graduate Bulletin", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/FXAD_GRAD_CUSTOM.FX_14232_GRAD_BLTN.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_GRAD.FX_GRAD_BULLETIN_90&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Graduate Catalog", url: "https://www.ucf.edu/catalog/graduate/#/home" },
+            { name: "Graduate Student Association", url: "http://www.gsa.graduate.ucf.edu/UCF Links/CSA Homepage.url" },
+            { name: "Graduate Studies Website", url: "https://graduate.ucf.edu/" },
+            { name: "Request Graduate Information", url: "https://applynow.graduate.ucf.edu/register/degpages" },
+            { name: "Research Week", url: "https://researchweek.ucf.edu/" },
+            { name: "I-20 Status", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/FX_ISC.FX_SS_ISC_STATUS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_INTL_STUDENTS_90.FX_I20_STATUS_90&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "International Services Website", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/FX_ISC.FX_SS_ISC_STATUS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_INTL_STUDENTS_90.FX_I20_STATUS_90&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Undergraduate Admissions", url: "https://www.ucf.edu/admissions/undergraduate/" },
+            { name: "Admissions Home Page", url: "https://www.ucf.edu/admissions/undergraduate/" },
+            { name: "Application Document Status", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_ADM_CUSTOM.CF_HA_UGRD_APPSTAT.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_UNDERGRAD.FX90_UGRD_APPSTATUS&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Visiting the Campus", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_ADM_CUSTOM.CF_HA_UGRD_APPSTAT.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_UNDERGRAD.FX90_UGRD_APPSTATUS&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Immunization Information", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_ADM_CUSTOM.CF_HA_UGRD_APPSTAT.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_UNDERGRAD.FX90_UGRD_APPSTATUS&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Reactivation Form", url: "https://www.ucf.edu/admissions/undergraduate/apply/" },
+            { name: "Orientation", url: "https://orientation.ucf.edu/" },
+            { name: "Scholarships", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_ADM_CUSTOM.CF_HA_UGRD_APPSTAT.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_UNDERGRAD.FX90_UGRD_APPSTATUS&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Student Accounts", url: "https://studentaccounts.ucf.edu/" },
+            { name: "Tuition Payment Plan", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_SF_PROCESSES.FX_PPL_ENROLL_SS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SF_MAIN.FX_PAYMENT_PLAN&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "View Your Account", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_SF_PROCESSES.FXSF_6191.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SF_MAIN.FX_HE90_SF_ACCT_VIEW&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Fee Invoice", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_SF_PROCESSES.FX_SF_FEEINV_TERMS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SF_MAIN.FX_HE90_SF_FEE_INVOICE&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Direct Deposit", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSF_SS_DIRDEP_VW.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SF_MAIN.FX_HE90_SF_DIRECT_DEP&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Student Services Website", url: "https://studentaccounts.ucf.edu/" },
+            { name: "1098-T Tax Management", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_SF_PROCESSES.FX_SF_1098T_EDELSS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_SF_MAIN.FX_HE90_SF_1098T&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "View Financial Aid", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SS_FA_AWARDS.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90DEV_SFA_HOME.FX_QUICK_LINKS_FINANCIAL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Home Page", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/G_CSA_MENU.G_CSA_HOME.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_CSA.FX_HE90_CSA_HOME&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Housing", url: "https://ucf.starrezhousing.com/StarRezPortal/1B9FD573/1/1/Home-Home?UrlToken=2E9CC260" },
+            { name: "Housing Portal", url: "https://www.housing.ucf.edu/" },
+            { name: "Missing Person Contact Information", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/FX_HOUSING.FX_HG_MISSING.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_HE90_HSG_MAIN.FX_HG_MISSING&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Dining Memberships", url: "https://ucf.campusdish.com/MealPlans" },
+            { name: "Dining Locations & Menus", url: "https://ucf.campusdish.com/LocationsAndMenus" },
+            { name: "Dining Catering", url: "https://ucf.campusdish.com/Catering" },
+            { name: "Placement Test Self-Enrollment", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/CF_SR_INTERFACE.FX_SR_TEST_STU.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SR_TEST_STU_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "myKnightSTAR", url: "https://ucflorida.navigate.eab.com/app/#/authentication/remote/" },
+            { name: "My Content", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SSS_STUDENT_CENTER_90&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Reporting Tools", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SSS_STUDENT_CENTER_90&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "PeopleTools", url: "https://my.ucf.edu/psp/IHPROD/EMPLOYEE/CSPROD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL?FolderPath=PORTAL_ROOT_OBJECT.FX_STUDENT_SLFSRV_MENU_90.FX_SSS_STUDENT_CENTER_90&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" },
+            { name: "Change my NID Password", url: "https://mynid.ucf.edu/pages/NidCheck.aspx" },
+            { name: "UCF Email", url: "https://mail.ucf.edu/" },
+            { name: "Webcourses@UCF", url: "https://webcourses.ucf.edu/" },
+            { name: "UCF Home Page", url: "https://www.ucf.edu/" },
+            { name: "UCF COM Home Page", url: "https://med.ucf.edu/" },
+            { name: "My Preferences", url: "https://my.ucf.edu/psc/IHPROD/EMPLOYEE/EMPL/c/PTGP_MENU.PTGP_USERPREF_FL.GBL?FolderPath=PORTAL_ROOT_OBJECT.NUI_STRUCTURE_CONTENT.PORTAL_GROUPLETS.PTFL_PEOPLETOOLS.PT_PTGP_USERPREF_FL_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder" }
+        ];
 
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h2>Welcome to CodeCruncher</h2>
-      <p>Your go-to source for all things coding. Learn, code, and solve problems!</p>
-      <button id="cta-button">Get Started</button>
-    </div>
-  </section>
+        const searchInput = document.getElementById('searchInput');
+        const menuList = document.getElementById('menuList');
 
-  <section id="about" class="info-section">
-    <h2>About Us</h2>
-    <p>CodeCruncher provides tutorials, coding challenges, and solutions for all levels of programmers. Join us today
-      and start your coding journey!</p>
-  </section>
+        function displayMenuItems(items) {
+            menuList.innerHTML = '';
+            items.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.textContent = item.name;
+                a.href = item.url;
+                a.target = '_blank';
+                li.appendChild(a);
+                menuList.appendChild(li);
+            });
+        }
 
-  <section id="services" class="info-section">
-    <h2>Our Services</h2>
-    <ul>
-      <li>Programming Tutorials</li>
-      <li>Coding Challenges</li>
-      <li>Project Assistance</li>
-      <li>Community Support</li>
-    </ul>
-  </section>
+        function filterMenuItems(searchTerm) {
+            return menuItems.filter(item => 
+                item.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
 
-  <section id="contact" class="info-section">
-    <h2>Contact Us</h2>
-    <form id="contact-form">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
+        searchInput.addEventListener('input', (e) => {
+            const filteredItems = filterMenuItems(e.target.value);
+            displayMenuItems(filteredItems);
+        });
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
-
-      <button type="submit">Submit</button>
-    </form>
-  </section>
-
-  <footer>
-    <p>&copy; 2024 CodeCruncher. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+        // Initial display of all menu items
+        displayMenuItems(menuItems);
+    </script>
 </body>
-
 </html>
+
